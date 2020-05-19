@@ -1,3 +1,7 @@
+from .blackjack_functions import printadd, print_chips, calculate_bankroll
+from colorama import Fore
+from colorama import Back
+
 class Player():
     def __init__(self, chips, name):
         # set up the chips for the player
@@ -38,7 +42,3 @@ class Player():
     # get name
     def get_name(self):
         return self.name
-
-class Dealer(Player):
-    def __init__(self, chips, name):
-        Player.__init__(self, chips, name)

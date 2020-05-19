@@ -1,3 +1,8 @@
+import random
+from os import system
+from .Card import Card
+from .blackjack_functions import is_human
+
 class Board():
     def __init__(self, players):
         # set up players
@@ -54,6 +59,7 @@ class Board():
 
     def place_bets(self):
         # go through players, only ask to place bets if they are a human
+        current_bet = None
         for current_player in self.players:
             if is_human(current_player):
                 current_bet = current_player.place_bet()
