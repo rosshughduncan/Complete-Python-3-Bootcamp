@@ -33,7 +33,8 @@ if __name__ == "__main__":
         # draw screen to begin without showing bets
         game_board.draw_board(False)
         # ask player to place a bet
-        game_board.place_bets()
+        game_board.place_bets_for_players()
+        game_board.test_func()
         # draw board with bets
         game_board.draw_board(True)
         input()

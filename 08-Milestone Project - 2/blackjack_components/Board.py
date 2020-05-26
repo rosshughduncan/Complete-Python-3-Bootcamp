@@ -1,7 +1,8 @@
 import random
 from os import system
 from .Card import Card
-from .blackjack_functions import is_human
+from .blackjack_functions import is_human, valid_currency
+from .Human import Human
 
 class Board():
     def __init__(self, players):
@@ -20,13 +21,13 @@ class Board():
             self.deck.append(Card(suite, 'Q'))
             self.deck.append(Card(suite, 'K'))
         # enter player currency
-        #self.currency = valid_currency("Enter the game currency symbol: ")
+        self.currency = valid_currency("Enter the game currency symbol: ")
         """
         This is for testing
         """
-        self.currency = "£"
-        # bet for player and dealer
-        self.bet = None;
+        # self.currency = "£"
+        # # bet for player and dealer
+        # self.bet = None;
 
     def draw_board(self, showBets):
         # clear screen
@@ -39,11 +40,14 @@ class Board():
             print('\n')
             self.players[i].print_hand()
             # print bets if we want them to be shown
+            print(showBets)
             if showBets:
                 if is_human(self.players[i]):
                     self.players[i].print_bet()
                 else:
                     print("\nBet:       Matched")
+            else:
+                self.place_bets(self)
             print("\n")
 
     def deal(self):
@@ -51,13 +55,14 @@ class Board():
         # take cards from deck
         if decksize > 0:
             for i in range(0, len(self.players)):
-                print(str(decksize))
                 self.players[i].add_card(self.deck.pop(random.randint(0, decksize - 1)))
+
         else:
             # if there are no cards left in the deck
             print("The deck is empty!")
 
-    def place_bets(self):
+    def place_bets_for_players(self):
+        print(f"Place bets gets called")
         # go through players, only ask to place bets if they are a human
         current_bet = None
         for current_player in self.players:
@@ -72,3 +77,6 @@ class Board():
                 #     highest_bet = current_bet
                 """
         self.bet = current_bet
+
+    def test_func(self):
+        print("This is a test that works now dammit")
